@@ -1,0 +1,4 @@
+site_name: 'myservie doc'
+
+nav:
+  - Home: index.md
