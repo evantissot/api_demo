@@ -1,0 +1,55 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: core
+  description: Everything related to core product
+spec:
+  owner: infra
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: myservice
+  description: This is my great Service
+spec:
+  owner: infra
+  domain: core
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: myService
+  description: The myServiec component
+spec:
+  type: service
+  lifecycle: production
+  owner: infra
+  system: myservice
+  dependsOn:
+    - resource:default/myservice-db
+  providesApis:
+    - myservice-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: myservice-db
+  description: Stores myservice data
+spec:
+  type: database
+  owner: infra
+  system: myservice
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: myservice-api
+  description: myServiec API
+spec:
+  type: graphql
+  lifecycle: production
+  owner: infra
+  system: myservice
+  definition:
+    $text: "./schema.graphql"
