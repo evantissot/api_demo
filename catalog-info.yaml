@@ -20,6 +20,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: myService
+  links:
+    - url: https://grafana.com
+      title: Grafana Dashboard
+      icon: dashboard
   annotations:
     backstage.io/techdocs-ref: dir:.
   description: The myService component
